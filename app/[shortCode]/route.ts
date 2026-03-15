@@ -34,5 +34,5 @@ export async function GET(
   });
 
   // Redirect
-  return NextResponse.redirect(link.originalUrl);
+  return NextResponse.redirect(link.url);
 }
