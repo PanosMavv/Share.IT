@@ -20,7 +20,6 @@ export default function Home() {
   const [shortUrl, setShortUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [language, setLanguage] = useState("en");
 
   async function handleSubmit() {
     if (!url) return;
@@ -71,24 +70,6 @@ export default function Home() {
           {/* Desktop Right Side */}
           <div className="hidden md:flex items-center gap-4">
 
-            {/* Language Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <Globe className="w-5 h-5" />
-                </Button>
-              </DropdownMenuTrigger>
-
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => setLanguage("en")}>
-                  🇺🇸 English
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setLanguage("el")}>
-                  🇬🇷 Ελληνικά
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-
             <Button variant="ghost" onClick={() => signIn("google")}>
               Login
             </Button>
@@ -127,26 +108,6 @@ export default function Home() {
               <a href="#" className="block hover:text-primary">Monetize</a>
               <a href="#" className="block hover:text-primary">About</a>
             </div>
-
-            {/* Language Section */}
-            <div className="pt-4 border-t space-y-2">
-              <p className="text-muted-foreground text-xs">Language</p>
-
-              <button
-                onClick={() => setLanguage("en")}
-                className="block w-full text-left hover:text-primary"
-              >
-                🇺🇸 English
-              </button>
-
-              <button
-                onClick={() => setLanguage("el")}
-                className="block w-full text-left hover:text-primary"
-              >
-                🇬🇷 Ελληνικά
-              </button>
-            </div>
-
           </div>
         )}
       </header>
