@@ -5,8 +5,7 @@ export async function GET(
   req: Request,
   { params }: { params: Promise<{ shortCode: string }> }
 ) {
-  const resolvedParams = await params;
-  const { shortCode } = resolvedParams;
+  const { shortCode } = await params;
 
   if (!shortCode) {
     return NextResponse.json(
@@ -15,7 +14,6 @@ export async function GET(
     );
   }
 
-  // Look up the link in the database
   const link = await prisma.link.findUnique({
     where: { shortCode },
   });
@@ -27,12 +25,28 @@ export async function GET(
     );
   }
 
-  // Increment clicks
+  // Extract request metadata
+  const userAgent = req.headers.get("user-agent") || undefined;
+  const referrer = req.headers.get("referer") || undefined;
+
+  // Increment click counter (atomic)
   await prisma.link.update({
-    where: { shortCode },
-    data: { clicks: link.clicks + 1 },
+    where: { id: link.id },
+    data: {
+      clicks: {
+        increment: 1,
+      },
+    },
   });
 
-  // Redirect
+  // Log individual click event
+  await prisma.click.create({
+    data: {
+      linkId: link.id,
+      device: userAgent,
+      referrer: referrer,
+    },
+  });
+
   return NextResponse.redirect(link.url);
 }

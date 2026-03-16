@@ -51,8 +51,9 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Link: 'Link',
   User: 'User',
+  Link: 'Link',
+  Click: 'Click',
   Account: 'Account',
   Session: 'Session'
 } as const
@@ -73,6 +74,17 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const UserScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  emailVerified: 'emailVerified',
+  image: 'image'
+} as const
+
+export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
 export const LinkScalarFieldEnum = {
   id: 'id',
   url: 'url',
@@ -85,15 +97,16 @@ export const LinkScalarFieldEnum = {
 export type LinkScalarFieldEnum = (typeof LinkScalarFieldEnum)[keyof typeof LinkScalarFieldEnum]
 
 
-export const UserScalarFieldEnum = {
+export const ClickScalarFieldEnum = {
   id: 'id',
-  name: 'name',
-  email: 'email',
-  emailVerified: 'emailVerified',
-  image: 'image'
+  linkId: 'linkId',
+  createdAt: 'createdAt',
+  country: 'country',
+  device: 'device',
+  referrer: 'referrer'
 } as const
 
-export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+export type ClickScalarFieldEnum = (typeof ClickScalarFieldEnum)[keyof typeof ClickScalarFieldEnum]
 
 
 export const AccountScalarFieldEnum = {
