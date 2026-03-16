@@ -15,11 +15,14 @@ import Logo from "@/components/common/Logo";
 import { signIn } from "next-auth/react";
 import { Twitter, Github, Linkedin, Menu, X, Globe } from "lucide-react";
 
+import { useRouter } from "next/navigation";
+
 export default function Home() {
   const [url, setUrl] = useState("");
   const [shortUrl, setShortUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const router = useRouter();
 
   async function handleSubmit() {
     if (!url) return;
@@ -70,12 +73,8 @@ export default function Home() {
           {/* Desktop Right Side */}
           <div className="hidden md:flex items-center gap-4">
 
-            <Button variant="ghost" onClick={() => signIn("google")}>
-              Login
-            </Button>
-
-            <Button onClick={() => signIn("google")}>
-              Sign Up
+            <Button onClick={() => router.push("/login")}>
+              Share Now!
             </Button>
           </div>
 
@@ -94,11 +93,8 @@ export default function Home() {
 
             {/* Auth Buttons */}
             <div className="flex flex-col gap-2">
-              <Button variant="ghost" onClick={() => signIn("google")}>
-                Login
-              </Button>
-              <Button onClick={() => signIn("google")}>
-                Sign Up
+              <Button onClick={() => router.push("/login")}>
+                Share Now!
               </Button>
             </div>
 
