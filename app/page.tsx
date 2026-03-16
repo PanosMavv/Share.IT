@@ -17,6 +17,8 @@ import { Twitter, Github, Linkedin, Menu, X, Globe } from "lucide-react";
 
 import { useRouter } from "next/navigation";
 
+import UserMenu from "@/components/auth/UserMenu";
+
 export default function Home() {
   const [url, setUrl] = useState("");
   const [shortUrl, setShortUrl] = useState("");
@@ -73,9 +75,7 @@ export default function Home() {
           {/* Desktop Right Side */}
           <div className="hidden md:flex items-center gap-4">
 
-            <Button onClick={() => router.push("/login")}>
-              Share Now!
-            </Button>
+            <UserMenu />
           </div>
 
           {/* Mobile Menu Button */}
@@ -92,10 +92,8 @@ export default function Home() {
           <div className="md:hidden border-t bg-background px-6 py-6 space-y-6 text-sm font-medium">
 
             {/* Auth Buttons */}
-            <div className="flex flex-col gap-2">
-              <Button onClick={() => router.push("/login")}>
-                Share Now!
-              </Button>
+            <div className="md:flex items-center gap-4">
+              <UserMenu />
             </div>
 
             {/* Navigation */}
